@@ -1,0 +1,150 @@
+Warrior:
+[
+    {
+		"spellsName": "Furious Strike",
+		"unlockSpellsLevel": "10",
+		"coolDown": "4",
+		"requiredSkill_MP": "10",
+		"damage_HP": "25",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Unleashes a powerful attack, dealing heavy damage to the target"
+	},
+	{
+		"spellsName": "Shield Wall",
+		"unlockSpellsLevel": "30",
+		"coolDown": "6",
+		"requiredSkill_MP": "20",
+		"damage_HP": "0",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "The Warrior creates an impenetrable barrier with their shield, reducing incoming damage for 3 rounds"
+	},
+	{
+        "spellsName": "Berserker Fury",
+		"unlockSpellsLevel": "35",
+		"coolDown": "8",
+		"requiredSkill_MP": "30",
+		"damage_HP": "40",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Warriors enter berserk mode and unleash frenzied attacks on enemies"
+    }
+];
+Mage:
+[
+    {
+		"spellsName": "Fireball",
+		"unlockSpellsLevel": "10",
+		"coolDown": "2",
+		"requiredSkill_MP": "10",
+		"damage_HP": "20",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Hurls a fiery projectile at the target, dealing moderate fire damage"
+	},
+	{
+		"spellsName": "Frost Nova",
+		"unlockSpellsLevel": "30",
+		"coolDown": "6",
+		"requiredSkill_MP": "20",
+		"damage_HP": "0",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "The Mage releases a burst of frost, freezing nearby enemies in place for 2 rounds"
+	},
+	{
+        "spellsName": "Glacial storms",
+		"unlockSpellsLevel": "35",
+		"coolDown": "9",
+		"requiredSkill_MP": "30",
+		"damage_HP": "45",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Launches a glacial storm at the target, dealing heavy damage to the target"
+    }
+];
+Rogue:
+[
+    {
+		"spellsName": "Backstab",
+		"unlockSpellsLevel": "10",
+		"coolDown": "3",
+		"requiredSkill_MP": "10",
+		"damage_HP": "15",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "The Rogue sneaks behind the target, delivering a devastating backstab, causing extra damage and stunning the enemy for 1 round"
+	},
+	{
+		"spellsName": "Shadowstep",
+		"unlockSpellsLevel": "30",
+		"coolDown": "6",
+		"requiredSkill_MP": "20",
+		"damage_HP": "0",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "The Rogue can evade the next spell or attack from the enemies"
+	},
+	{
+        "spellsName": "Ball lightning",
+		"unlockSpellsLevel": "35",
+		"coolDown": "10",
+		"requiredSkill_MP": "30",
+		"damage_HP": "50",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Unleash lightning strikes at enemies, dealing damage to them"
+    }
+];
+Paladin:
+[
+    {
+		"spellsName": "Holy Smite",
+		"unlockSpellsLevel": "10",
+		"coolDown": "3",
+		"requiredSkill_MP": "10",
+		"damage_HP": "15",
+		"spellsHealthPoints": "10",
+		"spellsDescription": " Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt"
+	},
+	{
+		"spellsName": "Divine Shield",
+		"unlockSpellsLevel": "30",
+		"coolDown": "6",
+		"requiredSkill_MP": "20",
+		"damage_HP": "0",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds"
+	},
+	{
+        "spellsName": "Dragon Slash",
+		"unlockSpellsLevel": "35",
+		"coolDown": "8",
+		"requiredSkill_MP": "30",
+		"damage_HP": "40",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Use the Dragon Slash to slash enemies and deal heavy damage to them"
+    }
+];
+Archer:
+[
+    {
+		"spellsName": "Rapid Shot",
+		"unlockSpellsLevel": "10",
+		"coolDown": "2",
+		"requiredSkill_MP": "10",
+		"damage_HP": "10",
+		"spellsHealthPoints": "0",
+		"spellsDescription": " Fires a flurry of arrows at the target, dealing moderate damage"
+	},
+	{
+		"spellsName": "Trick Shot",
+		"unlockSpellsLevel": "30",
+		"coolDown": "6",
+		"requiredSkill_MP": "20",
+		"damage_HP": "30",
+		"spellsHealthPoints": "0",
+		"spellsDescription": " Executes a precise shot that can pierce the enemies, causing heavy damage to the enemy"
+	},
+	{
+        "spellsName": "Storm of Blades",
+		"unlockSpellsLevel": "35",
+		"coolDown": "9",
+		"requiredSkill_MP": "30",
+		"damage_HP": "40",
+		"spellsHealthPoints": "0",
+		"spellsDescription": "Unleash a storm of blades on your enemies, dealing heavy damage to them"
+    }
+];
