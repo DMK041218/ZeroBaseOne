@@ -1,6 +1,7 @@
 package test;
 public class Archetypes {
     protected String name;
+    protected String playerName;
     protected int healthPoints;
     protected int showHP;
     protected int manaPoints;
@@ -12,8 +13,9 @@ public class Archetypes {
     protected int level;
     protected int xp;
 
-    public Archetypes(String name, int healthPoints, int manaPoints, int physicalDefense, int magicalDefense, int physicalAttack, int magicalAttack) {
+    public Archetypes(String name,String playerName,int healthPoints, int manaPoints, int physicalDefense, int magicalDefense, int physicalAttack, int magicalAttack) {
         this.name = name;
+        this.playerName = "Default";
         this.healthPoints = healthPoints;
         this.showHP = healthPoints;
         this.manaPoints = manaPoints;
@@ -26,6 +28,7 @@ public class Archetypes {
         this.xp = 0;
     }
     public Archetypes(){
+        this.playerName = "Default";
         this.showMP = manaPoints;
         this.showHP = healthPoints;
         this.level = 1;
@@ -59,6 +62,7 @@ public class Archetypes {
     @Override
     public String toString(){
         return "Character Name: " + name + "\n" +
+                "Player Name: " + playerName + "\n" +
                 "HP: " + healthPoints + "\n" +
                 "Magical Defense: " + magicalDefense + "\n" +
                 "Physical Defense: " + physicalDefense + "\n" + "ManaPoints: " + manaPoints + "\n" + "Physical Attack: " +
@@ -153,5 +157,13 @@ public class Archetypes {
 
     public void setXp(int xp) {
         this.xp = xp;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 }

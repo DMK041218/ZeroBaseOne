@@ -32,9 +32,9 @@ public class Paladin extends Archetypes {
             System.out.println("Error reading from Archetypes.txt");
         }
     }
-    public Paladin(String name, int healthPoints, int manaPoints, int physicalDefense, int magicalDefense,
+    public Paladin(String name,String playerName, int healthPoints, int manaPoints, int physicalDefense, int magicalDefense,
                    int physicalAttack, int magicalAttack) {
-        super(name, healthPoints, manaPoints, physicalDefense, magicalDefense, physicalAttack, magicalAttack);
+        super(name, playerName,healthPoints, manaPoints, physicalDefense, magicalDefense, physicalAttack, magicalAttack);
         try(BufferedReader reader = new BufferedReader(new FileReader("src/test/archetypes.txt"))){
 
             String line;
