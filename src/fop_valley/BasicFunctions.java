@@ -50,19 +50,28 @@ public class BasicFunctions {
         lineSeperator();
     }
 //Game Content Functions
-    public static void printMenu(){
+    public static void printInGameMenu(Archetypes player){
         clearScreen();
         printHeading("MENU");
         System.out.println("Choose an action:");
-        System.out.println("[1] Come on let's continue on our journey!");
-        System.out.println("[2] Current status of your character");
-        System.out.println("[3] Oh you wanna exit game?");
-
+        System.out.println("[1] Continue Journey");
+        System.out.println("[2] Current Status Of Your Character");
+        System.out.println("[3] Save Data And Exit Game?");
+        switch (readChoice("-->",3)){
+            case 1:
+                break;
+            case 2:
+                player.toString();
+                break;
+            case 3:
+                //Add GameState Here
+                break;
+        }
 
     }
     public Archetypes startGame(){
         Archetypes player = new Archetypes();
-        String playerName;
+        String playerSetName;
         boolean nameSet = false;
         clearScreen();
         //TODO Set Colour and Add ASCII Art Here
@@ -72,13 +81,15 @@ public class BasicFunctions {
         do{
             clearScreen();
             printHeading("Tell me your name: ");
-            playerName = scanner.next();
-            printHeading("Is your name " + playerName + " ?");
+            playerSetName = scanner.next();
+            printHeading("Is your name " + playerSetName + " ?");
             System.out.println("[1] Yes!");
             System.out.println("[2] No I wanna change my name.");
             int input = readChoice("---> ",2);
-            if(input == 1)
+            if(input == 1){
+                player.setPlayerName(playerSetName);
                 nameSet = true;
+            }
         }while(!nameSet);
         continueGame();
 
@@ -135,44 +146,6 @@ public class BasicFunctions {
                 characterSet = true;
         }while(!characterSet);
         return player;
-    }
-
-    public void showPlayerStatus(Archetypes player) {
-        System.out.println(player.getName());
-        System.out.println("-->" + "HP: [");
-
-        int HPratio = (int) Math.ceil((player.getShowHP() / 30) * (player.getHealthPoints() / player.getShowHP()));
-        for (int i = 0; i <(int)Math.floor(player.getShowHP() / 30);i++){
-            System.out.print((i <= HPratio ? ":" : " "));
-        }
-        System.out.print("] " + "( " + player.getHealthPoints() + " / " + player.getShowHP() + " )\n");
-
-        System.out.print("-->" + "MP: [");
-        int MPratio = (int) Math.ceil((player.getShowMP() / 10) * (player.getManaPoints() / player.getShowMP()));
-        for (int i = 0; i <(int)Math.floor(player.getShowMP() / 10);i++){
-            System.out.print((i <= MPratio ? "/" : " "));
-        }
-        System.out.print("] " + "( " + player.getManaPoints() + " / " + player.getShowMP() + " )\n");
-        lineSeperator();
-    }
-
-    public void showMonsterStatus(Monster monster) {
-        System.out.println(monster.getName());
-        System.out.println("-->" + "HP: [");
-
-        int HPratio = (int) Math.ceil((monster.getShowHP() / 30) * (monster.getHealthPoints() / monster.getShowHP()));
-        for (int i = 0; i <(int)Math.floor(monster.getShowHP() / 30);i++){
-            System.out.print((i <= HPratio ? ":" : " "));
-        }
-        System.out.print("] " + "( " + monster.getHealthPoints() + " / " + monster.getShowHP() + " )\n");
-
-        System.out.print("-->" + "MP: [");
-        int MPratio = (int) Math.ceil((monster.getShowMP() / 10) * (monster.getManaPoints() / monster.getShowMP()));
-        for (int i = 0; i <(int)Math.floor(monster.getShowMP() / 10);i++){
-            System.out.print((i <= MPratio ? "/" : " "));
-        }
-        System.out.print("] " + "( " + monster.getManaPoints() + " / " + monster.getShowMP() + " )\n");
-        lineSeperator();
     }
 
 
