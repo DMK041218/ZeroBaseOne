@@ -73,8 +73,9 @@ public class Mage extends Archetypes {
     @Override
     public void levelUp() {
         super.levelUp();
-        magicalAttack += 15;
-        manaPoints += 100;
+        magicalAttack += 10;
+        showMP += 30;
+        manaPoints += 30;
     }
 
 }

@@ -68,7 +68,8 @@ public class Warrior extends Archetypes {
     @Override
     public void levelUp() {
         super.levelUp();
-        healthPoints += 100;
+        healthPoints += 10;
+        showHP += 10;
         magicalDefense += 10;
         physicalDefense += 10;
     }

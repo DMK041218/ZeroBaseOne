@@ -2,7 +2,7 @@ package testSpells;
 
 public class Ability {
     private String spellsName;
-    //At what level can you unlock this spell?
+    //At what level can you unlock this spell
     private int unlockSpellsLevel;
     //The mana value required to release the skill
     private int requiredSkill_MP;
@@ -29,49 +29,31 @@ public class Ability {
         return coolDown;
     }
 
-    public void setCoolDown(int coolDown) {
-        this.coolDown = coolDown;
-    }
 
     public String getSpellsName() {
         return spellsName;
     }
 
-    public void setSpellsName(String spellsName) {
-        this.spellsName = spellsName;
-    }
 
     public int getUnlockSpellsLevel() {
         return unlockSpellsLevel;
     }
 
-    public void setUnlockSpellsLevel(int unlockSpellsLevel) {
-        this.unlockSpellsLevel = unlockSpellsLevel;
-    }
 
     public int getRequiredSkill_MP() {
         return requiredSkill_MP;
     }
 
-    public void setRequiredSkill_MP(int requiredSkill_MP) {
-        this.requiredSkill_MP = requiredSkill_MP;
-    }
 
     public int getDamage_HP() {
         return damage_HP;
     }
 
-    public void setDamage_HP(int damage_HP) {
-        this.damage_HP = damage_HP;
-    }
 
     public int getSpellsHealthPoints() {
         return spellsHealthPoints;
     }
 
-    public void setSpellsHealthPoints(int spellsHealthPoints) {
-        this.spellsHealthPoints = spellsHealthPoints;
-    }
 
     public boolean isLevelLocked() {
         return levelLocked;
@@ -85,9 +67,7 @@ public class Ability {
         return spellsDescription;
     }
 
-    public void setSpellsDescription(String spellsDescription) {
-        this.spellsDescription = spellsDescription;
-    }
+
 
     @Override
     public String toString() {

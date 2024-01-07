@@ -20,7 +20,7 @@ Warrior:
 	},
 	{
         "spellsName": "Berserker Fury",
-		"unlockSpellsLevel": "35",
+		"unlockSpellsLevel": "33",
 		"coolDown": "8",
 		"requiredSkill_MP": "30",
 		"damage_HP": "40",
@@ -50,7 +50,7 @@ Mage:
 	},
 	{
         "spellsName": "Glacial storms",
-		"unlockSpellsLevel": "35",
+		"unlockSpellsLevel": "33",
 		"coolDown": "9",
 		"requiredSkill_MP": "30",
 		"damage_HP": "45",
@@ -80,7 +80,7 @@ Rogue:
 	},
 	{
         "spellsName": "Ball lightning",
-		"unlockSpellsLevel": "35",
+		"unlockSpellsLevel": "33",
 		"coolDown": "10",
 		"requiredSkill_MP": "30",
 		"damage_HP": "50",
@@ -96,7 +96,7 @@ Paladin:
 		"coolDown": "3",
 		"requiredSkill_MP": "10",
 		"damage_HP": "15",
-		"spellsHealthPoints": "10",
+		"spellsHealthPoints": "30",
 		"spellsDescription": " Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt"
 	},
 	{
@@ -110,7 +110,7 @@ Paladin:
 	},
 	{
         "spellsName": "Dragon Slash",
-		"unlockSpellsLevel": "35",
+		"unlockSpellsLevel": "30",
 		"coolDown": "8",
 		"requiredSkill_MP": "30",
 		"damage_HP": "40",
@@ -140,7 +140,7 @@ Archer:
 	},
 	{
         "spellsName": "Storm of Blades",
-		"unlockSpellsLevel": "35",
+		"unlockSpellsLevel": "33",
 		"coolDown": "9",
 		"requiredSkill_MP": "30",
 		"damage_HP": "40",

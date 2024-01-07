@@ -67,7 +67,7 @@ public class Archer extends Archetypes {
     @Override
     public void levelUp() {
         super.levelUp();
-        physicalAttack += 50;
+        physicalAttack += 10;
     }
 
 }

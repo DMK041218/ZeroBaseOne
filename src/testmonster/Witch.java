@@ -1,7 +1,7 @@
 package testmonster;
 
 public class Witch extends Monster {
-    private Witch(){
+    public Witch(){
         super("Witch",50,80,8,20,6,12);
         this.showHP = healthPoints;
         this.showMP = manaPoints;

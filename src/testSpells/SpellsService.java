@@ -1,6 +1,7 @@
 package testSpells;
 
 import util.Constants;
+import test.*;
 
 public class SpellsService {
 
@@ -20,15 +21,15 @@ public class SpellsService {
         //.......
         ability.setTotalCount(++totalCount);
         if (totalCount <= coolDown) {
-            System.out.println("The spell is cooling down" + "\t" + totalCount + " / " + coolDown + "  C/D");
+            System.out.print(", " + totalCount + " / " + coolDown + "  CD,");
             return false;
         }
         int count = totalCount % (coolDown + 1);
         if (count != 0) {
-            System.out.println("The spell is cooling down" + "\t" + count + " / " + coolDown + "  C/D");
+            System.out.print(", " + count + " / " + coolDown + "  CD,");
             return false;
         } else {
-            System.out.println("Skills available");
+            System.out.print(", " + coolDown + " / " + coolDown + "  CD,");
             return true;
         }
     }
@@ -43,31 +44,19 @@ public class SpellsService {
             ability.setLevelLocked(true);
             return true;
         }
-        System.out.println("<Locked - " + ability.getUnlockSpellsLevel() + " >");
+        System.out.print("<Locked - " + ability.getUnlockSpellsLevel() + " >");
         return false;
     }
 
+    public boolean isMpEnough(Ability ability, int MP){
+        if(MP >= ability.getRequiredSkill_MP())
+            return true;
+        else
+            return false;
 
-
-    public int protectedDanageRounds(Ability ability, int level) {
-        if (unlockSpellsLevel(ability, level)) {
-            switch (ability.getSpellsName()) {
-                case Constants.shieldWall:
-                    System.out.println("The Warrior creates an impenetrable barrier with their shield, reducing incoming damage for 3 rounds");
-                    return 3;
-                case Constants.frostNova:
-                    System.out.println(" The Mage releases a burst of frost, freezing nearby enemies in place for 2 rounds");
-                    return 2;
-                case Constants.shadowstep:
-                    System.out.println(" The Rogue can evade the next spell or attack from the enemies");
-                    return 1;
-                case Constants.divineShield:
-                    System.out.println("Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds");
-                    return 2;
-            }
-        }
-        return 0;
     }
+
+
 
 
     public int getRequiredSkill_MP(Ability ability, int level) {

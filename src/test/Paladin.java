@@ -70,8 +70,8 @@ public class Paladin extends Archetypes {
     @Override
     public void levelUp() {
         super.levelUp();
-        physicalAttack += 30;
-        magicalAttack += 30;
+        physicalAttack += 10;
+        magicalAttack += 10;
     }
 }
     

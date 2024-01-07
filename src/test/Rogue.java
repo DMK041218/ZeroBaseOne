@@ -67,8 +67,8 @@ public class Rogue extends Archetypes {
     @Override
     public void levelUp() {
         super.levelUp();
-        physicalAttack += 30;
-        physicalDefense += 20;
+        physicalAttack += 10;
+        physicalDefense += 10;
     }
 }
 

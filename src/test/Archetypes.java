@@ -15,7 +15,7 @@ public class Archetypes {
 
     public Archetypes(String name,String playerName,int healthPoints, int manaPoints, int physicalDefense, int magicalDefense, int physicalAttack, int magicalAttack) {
         this.name = name;
-        this.playerName = "Default";
+        this.playerName = playerName;
         this.healthPoints = healthPoints;
         this.showHP = healthPoints;
         this.manaPoints = manaPoints;
@@ -28,37 +28,36 @@ public class Archetypes {
         this.xp = 0;
     }
     public Archetypes(){
-        this.playerName = "Default";
         this.showMP = manaPoints;
         this.showHP = healthPoints;
         this.level = 1;
         this.xp = 0;
     }
     public void expCheck(){
-        if(level <= 10){
-            if(xp >= 10){
-                xp -= 10;
+        if(this.level <= 10){
+            if(this.xp >= 10){
+                this.xp -= 10;
                 levelUp();
             }
         }
-        else if(level > 10 && level<35){
-            xp -= 30;
+        else if(this.level > 10 && this.level<35){
+            this.xp -= 30;
             levelUp();
         }
     }
 
     public void levelUp() {
-        healthPoints += 100;
-        showHP += 100;
-        manaPoints += 100;
-        showMP += 100;
+        healthPoints += 15;
+        showHP += 15;
+        manaPoints += 30;
+        showMP += 30;
         physicalDefense += 10;
         magicalDefense += 10;
-        physicalAttack += 15;
-        magicalAttack += 15;
+        physicalAttack += 10;
+        magicalAttack += 10;
         level++;
 
-   }
+    }
     @Override
     public String toString(){
         return "Character Name: " + name + "\n" +
@@ -68,7 +67,7 @@ public class Archetypes {
                 "Physical Defense: " + physicalDefense + "\n" + "ManaPoints: " + manaPoints + "\n" + "Physical Attack: " +
                 physicalAttack + "\n" + "Magical Attack: " + magicalAttack + "\n";
     }
-    
+
     public String getName() {
 
         return name;

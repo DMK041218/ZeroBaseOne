@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -65,6 +66,20 @@ public class ReadSpellsUtil {
         }
         return null;
     }
+
+    //Get the name of the spell list and return an String array of spells name
+    public static String[] getSpellsNameArr() {
+        String[] spellsName = new String[15];
+        int index = 0;
+        for (List<Ability> abilities : nameAbilities.values()) {
+            for (Ability a : abilities) {
+                spellsName[index] = a.getSpellsName();
+                index++;
+            }
+        }
+        return spellsName;
+    }
+
 
 
 

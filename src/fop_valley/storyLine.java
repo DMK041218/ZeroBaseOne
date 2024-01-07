@@ -30,11 +30,9 @@ public class storyLine {
         BasicFunctions.clearScreen();
         BasicFunctions.printHeading("Final Chapter");
         System.out.println("You went through many hardships and obstacles and finally got here");
-        System.out.println(" Congratulations. Next, you will face the most powerful existence behind all this darkness.");
-        System.out.println("Are you ready for this?");
-        //TODO ASCII Art of Valley with Monsters Here and Clear the console.
-        //TODO Add Final Battle Here.
-        BasicFunctions.continueGame();
+        System.out.println("Congratulations. You will face the most powerful existence behind all this darkness in the future.");
+        System.out.println("Thank you for playing");
+        System.out.println("Made by ZEROBASEONE");
     }
 
 
