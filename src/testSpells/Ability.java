@@ -106,4 +106,5 @@ public class Ability {
                 "Level Locked: " + levelLocked + '\n' +
                 "Spells Description: " + spellsDescription + '\n';
     }
+
 }

@@ -20,46 +20,48 @@ public class Game {
         System.out.println("Made by Group ZEROBASEONE");
         BasicFunctions.continueGame();
         BasicFunctions bfc = new BasicFunctions();
-        if(bfc.printBeginningMenu() != null){
+        player = bfc.printBeginningMenu();
+        if(player != null){
             //Successfully read save
+            player.toString();
             characterSet = true;
             nameSet = true;
-
+            System.out.println("Welcome back!");
         }
-        player = bfc.printBeginningMenu();
-
     }
         void startGame() {
-            //print the story intro
-            storyLine.printIntro();
-            BasicFunctions.printASCII("intro");
-            BasicFunctions.continueGame();
+            if(!characterSet && !nameSet){
+                //print the story intro
+                storyLine.printIntro();
+                BasicFunctions.printASCII("intro");
+                BasicFunctions.continueGame();
+            }
             //Set Character
             while (!characterSet){
                 BasicFunctions.printHeading("Choose your Character: ");
                 System.out.println("[1] Warrior");
                 System.out.println(new Warrior());
-                System.out.println(ReadSpellsUtil.getAbilitysByArchetypesName("Warrior"));
+                ReadSpellsUtil.printAbilityList("Warrior");
                 BasicFunctions.lineSeperator();
 
                 System.out.println("[2] Mage");
                 System.out.println(new Mage());
-                System.out.println(ReadSpellsUtil.getAbilitysByArchetypesName("Mage"));
+                ReadSpellsUtil.printAbilityList("Mage");
                 BasicFunctions.lineSeperator();
 
                 System.out.println("[3] Rogue");
                 System.out.println(new Rogue());
-                System.out.println(ReadSpellsUtil.getAbilitysByArchetypesName("Rogue"));
+                ReadSpellsUtil.printAbilityList("Rogue");
                 BasicFunctions.lineSeperator();
 
                 System.out.println("[4] Paladin");
                 System.out.println(new Paladin());
-                System.out.println(ReadSpellsUtil.getAbilitysByArchetypesName("Paladin"));
+                ReadSpellsUtil.printAbilityList("Paladin");
                 BasicFunctions.lineSeperator();
 
                 System.out.println("[5] Archer");
                 System.out.println(new Archer());
-                System.out.println(ReadSpellsUtil.getAbilitysByArchetypesName("Archer"));
+                ReadSpellsUtil.printAbilityList("Archer");
 
                 int choice = BasicFunctions.readChoice("Your character is --->", 5);
                 switch (choice) {

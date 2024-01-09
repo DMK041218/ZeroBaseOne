@@ -53,6 +53,13 @@ public class ReadSpellsUtil {
         return nameAbilities.get(name);
     }
 
+    public static void printAbilityList(String name) {
+        List<Ability> abilities = nameAbilities.get(name);
+        for (Ability a : abilities) {
+            System.out.println(a + "\n");
+        }
+    }
+
     //Get skill beans based on character name and skill name
     public static Ability getAbilitysBySpellsName(String name, String spellsName) {
         List<Ability> abilities = nameAbilities.get(name);

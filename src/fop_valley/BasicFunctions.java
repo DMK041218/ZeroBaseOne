@@ -82,7 +82,7 @@ public class BasicFunctions {
                 return null;
             case 2 :
                 GameState gamestate = new GameState();
-                gamestate.loadGame();
+                gamestate.loadGame(gamestate);
                 return gamestate;
             case 3 :
                 System.exit(0);

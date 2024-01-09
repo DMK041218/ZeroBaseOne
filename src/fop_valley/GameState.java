@@ -38,8 +38,7 @@ public class GameState extends Archetypes implements Serializable {
     }
 
 
-    public void loadGame(){
-        GameState gameState = null;
+    public void loadGame(GameState gameState){
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/fop_valley/saveGame.dat"))) {
             gameState = (GameState) in.readObject();
         } catch (IOException e) {

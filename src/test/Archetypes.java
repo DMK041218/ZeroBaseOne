@@ -63,10 +63,14 @@ public class Archetypes {
     public String toString(){
         return  ColorText.colorText("Character Name: " + name + "\n",ColorText.YELLOW) +
                 "Player Name: " + playerName + "\n" +
+                "XP: " + xp + "\n" +
+                "Lv: " + level + "\n" +
                 "HP: " + healthPoints + "\n" +
                 "Magical Defense: " + magicalDefense + "\n" +
-                "Physical Defense: " + physicalDefense + "\n" + "ManaPoints: " + manaPoints + "\n" + "Physical Attack: " +
-                physicalAttack + "\n" + "Magical Attack: " + magicalAttack + "\n";
+                "Physical Defense: " + physicalDefense + "\n" +
+                "ManaPoints: " + manaPoints + "\n" +
+                "Physical Attack: " + physicalAttack + "\n" +
+                "Magical Attack: " + magicalAttack + "\n";
     }
 
     public String getName() {
