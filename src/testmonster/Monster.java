@@ -21,16 +21,19 @@ public class Monster {
         this.physicalDefense = physicalDefense;
         this.magicalDefense = magicalDefense;
     }
-    //TODO Everytime player's level up to 5 levels the attributes of Monster will change
-    public void MonsterLvUp(){
-        healthPoints += 70;
-        showHP += 70;
-        manaPoints += 50;
-        showMP += 50;
-        physicalDefense += 10;
-        magicalDefense += 10;
-        physicalAttack += 15;
-        magicalAttack += 15;
+    public void MonsterLvUp(int playerLevel){
+        //Everytime player's level up to 3 levels the attributes of Monster will change
+        if(playerLevel != 0 && playerLevel % 3 == 0){
+            System.out.println("As you get stronger, the monsters get stronger too...");
+            healthPoints += 70;
+            showHP += 70;
+            manaPoints += 50;
+            showMP += 50;
+            physicalDefense += 10;
+            magicalDefense += 10;
+            physicalAttack += 15;
+            magicalAttack += 15;
+        }
     }
 
     public String getName() {

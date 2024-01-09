@@ -1,7 +1,6 @@
 package testSpells;
 
-import util.Constants;
-import test.*;
+import util.ColorText;
 
 public class SpellsService {
 
@@ -19,17 +18,18 @@ public class SpellsService {
         //The fifth call (available) coolDown= 4, totalCount = 5 totalCount%(coolDown+1) = 0
         //Sixth call (cooling) coolDown= 4, totalCount = 6 totalCount%(coolDown+1) = 1
         //.......
-        ability.setTotalCount(++totalCount);
+        if(ability.isLevelLocked())
+            ability.setTotalCount(++totalCount);
         if (totalCount <= coolDown) {
-            System.out.print(", " + totalCount + " / " + coolDown + "  CD,");
+            System.out.println(", " + totalCount + "/" + coolDown + " CD");
             return false;
         }
         int count = totalCount % (coolDown + 1);
         if (count != 0) {
-            System.out.print(", " + count + " / " + coolDown + "  CD,");
+            System.out.println(", " + count + "/" + coolDown + " CD");
             return false;
         } else {
-            System.out.print(", " + coolDown + " / " + coolDown + "  CD,");
+            System.out.println(", " + coolDown + "/" + coolDown + " CD");
             return true;
         }
     }
@@ -44,7 +44,7 @@ public class SpellsService {
             ability.setLevelLocked(true);
             return true;
         }
-        System.out.print("<Locked - " + ability.getUnlockSpellsLevel() + " >");
+        System.out.print(ColorText.colorText("<Locked - " + ability.getUnlockSpellsLevel() + " >",ColorText.RED));
         return false;
     }
 
@@ -81,7 +81,6 @@ public class SpellsService {
         }
         return 0;
     }
-
 
 
 

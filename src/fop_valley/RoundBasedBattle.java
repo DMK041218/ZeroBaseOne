@@ -2,6 +2,7 @@ package fop_valley;
 import test.*;
 import testmonster.*;
 import testSpells.*;
+import util.ColorText;
 
 public class RoundBasedBattle {
     public String readBattleChoice(){
@@ -62,6 +63,7 @@ public class RoundBasedBattle {
     }
     public void battle(Warrior player,Monster monster){
         player.expCheck();
+        monster.MonsterLvUp(player.getLevel());
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -77,6 +79,7 @@ public class RoundBasedBattle {
                 isPlayerTurnEnd = useStarter(player, monster, choice);
                 if(choice.equalsIgnoreCase("S2"))
                     isPlayerDefending = true;
+
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
@@ -94,12 +97,11 @@ public class RoundBasedBattle {
                         case "A3":
                             isPlayerTurnEnd = usp.WarriorS3(player,monster);
                             break;
-                        default:
-                            isPlayerTurnEnd = false;
 
                     }
                 }
             }while(!isPlayerTurnEnd);
+
             if(monster.getHealthPoints() <= 0){
                 System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
                 int curXP = player.getXp();
@@ -121,8 +123,9 @@ public class RoundBasedBattle {
                 defendStatus(player,monster);
             }
             if(player.getHealthPoints() <= 0){
-                System.out.println("You DIED and GAME OVER");
-                System.out.println("Press Any Button to Quit.");
+                //"You DIED and GAME OVER" "Press Any Button to Quit."
+                System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
+                System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
                 System.exit(0);
             }
@@ -131,6 +134,7 @@ public class RoundBasedBattle {
 
     public void battle(Archer player,Monster monster){
         player.expCheck();
+        monster.MonsterLvUp(player.getLevel());
         do {
             //player's turn
             showPlayerStatus(player);
@@ -183,6 +187,7 @@ public class RoundBasedBattle {
     }
     public void battle(Mage player,Monster monster){
         player.expCheck();
+        monster.MonsterLvUp(player.getLevel());
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -250,6 +255,7 @@ public class RoundBasedBattle {
     }
     public void battle(Paladin player,Monster monster){
         player.expCheck();
+        monster.MonsterLvUp(player.getLevel());
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -318,6 +324,7 @@ public class RoundBasedBattle {
     }
     public void battle(Rogue player,Monster monster){
         player.expCheck();
+        monster.MonsterLvUp(player.getLevel());
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -356,7 +363,7 @@ public class RoundBasedBattle {
                 }
             }while(!isPlayerTurnEnd);
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
+                System.out.println("You Defeated the " + monster.getName() + " ,Congratulations.");
                 int curXP = player.getXp();
                 player.setXp(curXP + 5);
                 break;
@@ -389,41 +396,53 @@ public class RoundBasedBattle {
     public void PlayerAttack(Archetypes player, Monster monster){
         int playerAtk = player.getPhysicalAttack() + player.getMagicalAttack();
         int monsterDfs = monster.getMagicalDefense() + monster.getPhysicalDefense();
-        int monsterDmg = playerAtk - monsterDfs;
-        System.out.println("You have HIT the " + monster.getName() + " ,causing " + monsterDmg + " damage!");
-        monster.setHealthPoints(monster.getHealthPoints() - monsterDmg);
+        double monsterDmg = playerAtk -0.3 * monsterDfs;
+        System.out.println("You have HIT the " + monster.getName() + " ,causing " + (int)monsterDmg + " damage!");
+        monster.setHealthPoints(monster.getHealthPoints() - (int)monsterDmg);
 }
     //Player Damaged By Monster's Attack
     public void MonsterAttack(Archetypes player, Monster monster){
         int monsterAtk = monster.getPhysicalAttack() + monster.getMagicalAttack();
         int playerDfs = player.getMagicalDefense() + player.getPhysicalDefense();
-        int playerDmg = monsterAtk - playerDfs;
-        System.out.println("> CRITICAL! " + monster.getName() + " has SLASHED you for " + playerDmg + " damage!");
-        player.setHealthPoints(player.getHealthPoints() - playerDmg);
+        double playerDmg = monsterAtk -  0.3 * playerDfs;
+        if(playerDmg <= 0){
+            player.setHealthPoints(player.getHealthPoints());
+            System.out.println("You are strong enough, and the current monsters can no longer harm you.");
+        }
+        else {
+            System.out.println("> CRITICAL! " + monster.getName() + " has SLASHED you for " + (int)playerDmg + " damage!");
+            player.setHealthPoints(player.getHealthPoints() - (int) playerDmg);
+        }
     }
 
     public void showPlayerStatus(Archetypes player) {
         System.out.println(player.getName());
-        System.out.println("-->" + "HP: [");
+        System.out.print("-->" + "HP: [");
 
         int HPratio = (int) Math.ceil((player.getShowHP() / 30) * (player.getHealthPoints() / player.getShowHP()));
-        for (int i = 0; i <(int)Math.floor(player.getShowHP() / 30);i++){
+        for (int i = 0; i < (int) Math.floor(player.getShowHP() / 30); i++) {
             System.out.print((i <= HPratio ? ":" : " "));
         }
         System.out.print("] " + "( " + player.getHealthPoints() + " / " + player.getShowHP() + " )\n");
 
         System.out.print("-->" + "MP: [");
         int MPratio = (int) Math.ceil((player.getShowMP() / 10) * (player.getManaPoints() / player.getShowMP()));
-        for (int i = 0; i <(int)Math.floor(player.getShowMP() / 10);i++){
-            System.out.print((i <= MPratio ? "/" : " "));
+        if (player.getManaPoints() != 0) {
+            for (int i = 0; i < (int) Math.floor(player.getShowMP() / 10); i++) {
+                System.out.print((i <= MPratio ? "/" : " "));
+            }
+
+            System.out.print("] " + "( " + player.getManaPoints() + " / " + player.getShowMP() + " )\n");
         }
-        System.out.print("] " + "( " + player.getManaPoints() + " / " + player.getShowMP() + " )\n");
+        else {
+            System.out.print("      ]\n");
+        }
         BasicFunctions.lineSeperator();
     }
 
     public void showMonsterStatus(Monster monster) {
         System.out.println(monster.getName());
-        System.out.println("-->" + "HP: [");
+        System.out.print("-->" + "HP: [");
 
         int HPratio = (int) Math.ceil((monster.getShowHP() / 30) * (monster.getHealthPoints() / monster.getShowHP()));
         for (int i = 0; i <(int)Math.floor(monster.getShowHP() / 30);i++){
@@ -432,18 +451,29 @@ public class RoundBasedBattle {
         System.out.print("] " + "( " + monster.getHealthPoints() + " / " + monster.getShowHP() + " )\n");
 
         System.out.print("-->" + "MP: [");
-        int MPratio = (int) Math.ceil((monster.getShowMP() / 10) * (monster.getManaPoints() / monster.getShowMP()));
-        for (int i = 0; i <(int)Math.floor(monster.getShowMP() / 10);i++){
-            System.out.print((i <= MPratio ? "/" : " "));
+        if(monster.getManaPoints() != 0){
+            int MPratio = (int) Math.ceil((monster.getShowMP() / 10) * (monster.getManaPoints() / monster.getShowMP()));
+            for (int i = 0; i <(int)Math.floor(monster.getShowMP() / 10);i++){
+                System.out.print((i <= MPratio ? "/" : " "));
+            }
+            System.out.print("] " + "( " + monster.getManaPoints() + " / " + monster.getShowMP() + " )\n");
         }
-        System.out.print("] " + "( " + monster.getManaPoints() + " / " + monster.getShowMP() + " )\n");
+        else {
+            System.out.print("      ]\n");
+        }
+        BasicFunctions.lineSeperator();
     }
     public void defendStatus(Archetypes player,Monster monster){
             int monsterAtk = monster.getPhysicalAttack() + monster.getMagicalAttack();
             int playerDfs = player.getMagicalDefense() + player.getPhysicalDefense();
-            int playerDmg = monsterAtk - playerDfs;
-            player.setHealthPoints((int)(player.getHealthPoints() - playerDmg * 0.8 ));
-            System.out.println("> " + monster.getName() + " has SLASHED you ONLY for " + (int)(playerDmg * 0.8 )+ " damage because you are on denfense.");
+            double playerDmg = monsterAtk - 0.6 * playerDfs;
+            if(playerDmg <= 0){
+                System.out.println("> " + monster.getName() + " cannot harm you because you are on denfense.");
+            }
+            else {
+                player.setHealthPoints((int) (player.getHealthPoints() - playerDmg));
+                System.out.println("> " + monster.getName() + " has SLASHED you ONLY for " + (int) (playerDmg) + " damage because you are on denfense.");
+            }
     }
 
     public void battleMenu(){

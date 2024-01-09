@@ -7,10 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 
 //ability
@@ -35,7 +32,7 @@ public class ReadSpellsUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Map<String, List<Ability>> nameAbilities = new HashMap<>();
+        Map<String, List<Ability>> nameAbilities = new LinkedHashMap<>();
         String[] split = str.split(Constants.semicolon);
         for (String s : split) {
             String key = s.substring(0, s.indexOf(Constants.colon));
@@ -59,8 +56,8 @@ public class ReadSpellsUtil {
     //Get skill beans based on character name and skill name
     public static Ability getAbilitysBySpellsName(String name, String spellsName) {
         List<Ability> abilities = nameAbilities.get(name);
-        for (Ability ability: abilities) {
-            if(ability.getSpellsName().equals(spellsName)){
+        for (Ability ability : abilities) {
+            if (ability.getSpellsName().equals(spellsName)) {
                 return ability;
             }
         }

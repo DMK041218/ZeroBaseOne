@@ -1,44 +1,44 @@
 1. **Goblin**
-   - HP: 40
+   - HP: 130
    - MP: 0
-   - Physical Attack: 10
+   - Physical Attack: 55
    - Magical Attack: 0
-   - Physical Defense: 5
-   - Magical Defense: 2
+   - Physical Defense: 20
+   - Magical Defense: 30
    - Description: Goblins are small, pesky creatures that rely on sheer numbers to overpower their foes. They have no special abilities.
 
 2. **Skeleton**
-   - HP: 60
+   - HP: 160
    - MP: 0
-   - Physical Attack: 12
+   - Physical Attack: 72
    - Magical Attack: 0
-   - Physical Defense: 7
-   - Magical Defense: 3
+   - Physical Defense: 40
+   - Magical Defense: 30
    - Description: Skeletons are reanimated undead, driven by malevolent intent. They have no unique abilities.
 
 3. **Witch**
-   - HP: 50
+   - HP: 145
    - MP: 80
-   - Physical Attack: 8
-   - Magical Attack: 20
-   - Physical Defense: 6
-   - Magical Defense: 12
+   - Physical Attack: 40
+   - Magical Attack: 110
+   - Physical Defense: 26
+   - Magical Defense: 80
    - Description: Witches possess magical abilities, including the power to cast spells. Their main ability is to cast "Fireball," a potent fire-based magical attack.
 
 4. **Orc**
-   - HP: 70
+   - HP: 180
    - MP: 0
-   - Physical Attack: 15
+   - Physical Attack: 80
    - Magical Attack: 0
-   - Physical Defense: 9
-   - Magical Defense: 4
+   - Physical Defense: 50
+   - Magical Defense: 35
    - Description: Orcs are hulking, brutish creatures known for their raw strength. They have no unique abilities.
 
 5. **Harpy**
-   - HP: 60
+   - HP: 160
    - MP: 20
-   - Physical Attack: 14
-   - Magical Attack: 10
-   - Physical Defense: 8
-   - Magical Defense: 8
+   - Physical Attack: 70
+   - Magical Attack: 55
+   - Physical Defense: 45
+   - Magical Defense: 50
    - Description: Harpies are agile and cunning. They possess two abilities: "Talon Strike," a physical attack, and "Wind Gust," a magical attack that can disrupt opponents.

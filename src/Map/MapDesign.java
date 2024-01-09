@@ -2,7 +2,9 @@ package Map;
 
 import java.util.Random;
 import java.util.Scanner;
-import testmonster.*;
+
+import fop_valley.BasicFunctions;
+import util.ColorText;
 public class MapDesign {
     private static final int MONSTER_TYPES = 7;
     char[][] map = new char[40][40];
@@ -103,8 +105,8 @@ public class MapDesign {
         cur_y = y;
         boolean isMovementSuccessful = false;
         do{
-            System.out.print("What's your next step?");
-            System.out.println("-->");
+            System.out.println("What's your next step?");
+            System.out.print("-->");
             char dir = scanner.next().toUpperCase().charAt(0);
             switch (dir) {
                 case 'W':
@@ -121,11 +123,11 @@ public class MapDesign {
                     isMovementSuccessful = true;
                     break;
                 case 'D':
-                    cur_y = Math.min(x + 1, 38);
+                    cur_y = Math.min(y + 1, 38);
                     isMovementSuccessful = true;
                     break;
                 default:
-                    System.out.println("Adventurer, you have gone too far.");
+                    System.out.println("Adventurer, you have gone too far.\n");
             }
         }while(!isMovementSuccessful);
         //check encounter
@@ -155,6 +157,7 @@ public class MapDesign {
                     x = cur_x;
                     y = cur_y;
                     //set the current position as '@'
+                    System.out.println(ColorText.colorText("You startled the Witch!",ColorText.RED));
                     map[x][y] = '@';
                     return 'W';
                 //encounter goblin
@@ -168,6 +171,8 @@ public class MapDesign {
                     x = cur_x;
                     y = cur_y;
                     //set the current position as '@'
+                    System.out.println(ColorText.colorText("A sleeping goblin was awakened by you...",ColorText.RED));
+                    BasicFunctions.printASCII("Goblin");
                     map[x][y] = '@';
                     return 'G';
                 //encounter Orc
@@ -181,6 +186,8 @@ public class MapDesign {
                     x = cur_x;
                     y = cur_y;
                     //set the current position as '@'
+                    System.out.println(ColorText.colorText("An orc roars and charges towards you!",ColorText.RED));
+                    BasicFunctions.printASCII("Orc");
                     map[x][y] = '@';
                     return 'O';
                 //encounter Skeleton
@@ -194,6 +201,8 @@ public class MapDesign {
                     x = cur_x;
                     y = cur_y;
                     //set the current position as '@'
+                    System.out.println(ColorText.colorText("Brace yourself,the skeleton has you in its sight...",ColorText.RED));
+                    BasicFunctions.printASCII("Skeleton");
                     map[x][y] = '@';
                     return 'S';
                 //encounter Harpy
@@ -207,6 +216,8 @@ public class MapDesign {
                     x = cur_x;
                     y = cur_y;
                     //set the current position as '@'
+                    System.out.println(ColorText.colorText("You have strayed into harpy's territory...",ColorText.RED));
+                    BasicFunctions.printASCII("Harpy");
                     map[x][y] = '@';
                     return 'H';
                 default:

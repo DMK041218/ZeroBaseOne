@@ -1,4 +1,5 @@
 package test;
+import util.ColorText;
 public class Archetypes {
     protected String name;
     protected String playerName;
@@ -60,7 +61,7 @@ public class Archetypes {
     }
     @Override
     public String toString(){
-        return "Character Name: " + name + "\n" +
+        return  ColorText.colorText("Character Name: " + name + "\n",ColorText.YELLOW) +
                 "Player Name: " + playerName + "\n" +
                 "HP: " + healthPoints + "\n" +
                 "Magical Defense: " + magicalDefense + "\n" +

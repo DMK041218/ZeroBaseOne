@@ -1,7 +1,6 @@
 package fop_valley;
 public class storyLine {
     public static void printIntro(){
-        BasicFunctions.clearScreen();
         BasicFunctions.printHeading("The beginning of the story");
         System.out.println("One day, you wake up to find your peaceful village has been turned into ruins,");
         System.out.println("and the culprit behind all this is the sudden appearance of monsters from another world.");
@@ -9,7 +8,6 @@ public class storyLine {
         //TODO ASCII Art of Fire Here and Clear the console.
         System.out.println("After asking around, you learned that the monsters’ stronghold is located in a valley named FOP.");
         System.out.println("Amidst the chaos, you decide to face the challenge head-on, embarking on a journey to explore this dangerous and mysterious place.");
-        BasicFunctions.continueGame();
     }
 
     public static void PrintChap2(){

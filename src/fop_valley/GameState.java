@@ -18,7 +18,8 @@ public class GameState extends Archetypes implements Serializable {
     }
     @Override
     public String toString(){
-        return ""+this.level+
+        return
+                this.level+
                 "\n"+this.xp+
                 "\n"+this.healthPoints+
                 "\n"+this.manaPoints+
