@@ -91,7 +91,6 @@ public class BasicFunctions {
         }
     }
     public static void printInGameMenu(Archetypes player){
-        clearScreen();
         printHeading("MENU");
         System.out.println("Choose an action:");
         System.out.println("[1] Continue Journey");
@@ -101,6 +100,7 @@ public class BasicFunctions {
             case 1:
                 return;
             case 2:
+                player.expCheck();
                 System.out.println(player);
                 continueGame();
                 return;

@@ -3,8 +3,17 @@ import test.*;
 import testmonster.*;
 import testSpells.*;
 import util.ColorText;
+import util.ReadSpellsUtil;
+
+import java.util.List;
 
 public class RoundBasedBattle {
+    public void resetAbilityCalledCnt(Archetypes player){
+        for(int i = 0; i < 3;i++){
+            List<Ability> abilities = ReadSpellsUtil.getAbilitysByArchetypesName(player.getName());
+            abilities.get(i).setIsCalledCnt(0);
+        }
+    }
     public String readBattleChoice(){
         String[] battleChoice = {"S1","S2","S3","A1","A2","A3"};
         String choice = BasicFunctions.readChoice("-->",battleChoice);
@@ -20,6 +29,7 @@ public class RoundBasedBattle {
                 System.out.println("Your Health Points Is Full.");
             }
             else {
+                System.out.println("You regain 20 health points.");
                 player.setHealthPoints(curHp + 20);
             }
             return true;
@@ -63,7 +73,8 @@ public class RoundBasedBattle {
     }
     public void battle(Warrior player,Monster monster){
         player.expCheck();
-        monster.MonsterLvUp(player.getLevel());
+        int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
+        player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -86,7 +97,7 @@ public class RoundBasedBattle {
                             isPlayerTurnEnd = usp.WarriorS1(player, monster);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player)){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[1]))){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 3;
                                 isPlayerTurnEnd = true;
@@ -101,11 +112,12 @@ public class RoundBasedBattle {
                     }
                 }
             }while(!isPlayerTurnEnd);
+            resetAbilityCalledCnt(player);
 
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
+                System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
-                player.setXp(curXP + 5);
+                player.setXp(curXP + 20);
                 break;
             }
             //monster's turn
@@ -114,6 +126,7 @@ public class RoundBasedBattle {
                 MonsterAttack(player,monster);
             }
             else if(isPlayerDodging){
+                System.out.println(ColorText.colorText("You dodged an attack",ColorText.YELLOW));
                 leftDodgeRound--;
                 if(leftDodgeRound <= 0){
                     isPlayerDodging = false;
@@ -123,7 +136,6 @@ public class RoundBasedBattle {
                 defendStatus(player,monster);
             }
             if(player.getHealthPoints() <= 0){
-                //"You DIED and GAME OVER" "Press Any Button to Quit."
                 System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
                 System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
@@ -134,7 +146,8 @@ public class RoundBasedBattle {
 
     public void battle(Archer player,Monster monster){
         player.expCheck();
-        monster.MonsterLvUp(player.getLevel());
+        int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
+        player.setLvMonsterLvUp(restLv);
         do {
             //player's turn
             showPlayerStatus(player);
@@ -164,10 +177,11 @@ public class RoundBasedBattle {
                     }
                 }
             }while(!isPlayerTurnEnd);
+            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
+                System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
-                player.setXp(curXP + 5);
+                player.setXp(curXP + 20);
                 break;
             }
             //monster's turn
@@ -178,8 +192,8 @@ public class RoundBasedBattle {
             else
                 MonsterAttack(player,monster);
             if(player.getHealthPoints() <= 0){
-                System.out.println("You DIED and GAME OVER");
-                System.out.println("Press Any Button to Quit.");
+                System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
+                System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
                 System.exit(0);
             }
@@ -187,7 +201,8 @@ public class RoundBasedBattle {
     }
     public void battle(Mage player,Monster monster){
         player.expCheck();
-        monster.MonsterLvUp(player.getLevel());
+        int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
+        player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -209,7 +224,7 @@ public class RoundBasedBattle {
                             isPlayerTurnEnd = usp.MageS1(player, monster);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player)){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[4]))){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 2;
                                 isPlayerTurnEnd = true;
@@ -225,10 +240,11 @@ public class RoundBasedBattle {
                     }
                 }
             }while(!isPlayerTurnEnd);
+            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
+                System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
-                player.setXp(curXP + 5);
+                player.setXp(curXP + 20);
                 break;
             }
             //monster's turn
@@ -237,6 +253,7 @@ public class RoundBasedBattle {
                 MonsterAttack(player,monster);
             }
             else if(isPlayerDodging){
+                System.out.println(ColorText.colorText("You dodged an attack",ColorText.YELLOW));
                 leftDodgeRound--;
                 if(leftDodgeRound <= 0){
                     isPlayerDodging = false;
@@ -246,8 +263,8 @@ public class RoundBasedBattle {
                 defendStatus(player,monster);
             }
             if(player.getHealthPoints() <= 0){
-                System.out.println("You DIED and GAME OVER");
-                System.out.println("Press Any Button to Quit.");
+                System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
+                System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
                 System.exit(0);
             }
@@ -255,7 +272,8 @@ public class RoundBasedBattle {
     }
     public void battle(Paladin player,Monster monster){
         player.expCheck();
-        monster.MonsterLvUp(player.getLevel());
+        int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
+        player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -278,7 +296,7 @@ public class RoundBasedBattle {
                             usp.usingHealingSpells(player);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player)){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[10]))){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 2;
                                 isPlayerTurnEnd = true;
@@ -294,10 +312,12 @@ public class RoundBasedBattle {
                     }
                 }
             }while(!isPlayerTurnEnd);
+            resetAbilityCalledCnt(player);
+
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the" + monster.getName() + " ,Congratulations.");
+                System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
-                player.setXp(curXP + 5);
+                player.setXp(curXP + 20);
                 break;
             }
             //monster's turn
@@ -306,6 +326,7 @@ public class RoundBasedBattle {
                 MonsterAttack(player,monster);
             }
             else if(isPlayerDodging){
+                System.out.println(ColorText.colorText("You dodged an attack",ColorText.YELLOW));
                 leftDodgeRound--;
                 if(leftDodgeRound <= 0){
                     isPlayerDodging = false;
@@ -315,8 +336,8 @@ public class RoundBasedBattle {
                 defendStatus(player,monster);
             }
             if(player.getHealthPoints() <= 0){
-                System.out.println("You DIED and GAME OVER");
-                System.out.println("Press Any Button to Quit.");
+                System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
+                System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
                 System.exit(0);
             }
@@ -324,7 +345,8 @@ public class RoundBasedBattle {
     }
     public void battle(Rogue player,Monster monster){
         player.expCheck();
-        monster.MonsterLvUp(player.getLevel());
+        int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
+        player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
@@ -346,7 +368,7 @@ public class RoundBasedBattle {
                             isPlayerTurnEnd = usp.RogueS1(player, monster);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player)){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[7]))){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 1;
                                 isPlayerTurnEnd = true;
@@ -362,10 +384,11 @@ public class RoundBasedBattle {
                     }
                 }
             }while(!isPlayerTurnEnd);
+            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
-                System.out.println("You Defeated the " + monster.getName() + " ,Congratulations.");
+                System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
-                player.setXp(curXP + 5);
+                player.setXp(curXP + 20);
                 break;
             }
             //monster's turn
@@ -374,6 +397,7 @@ public class RoundBasedBattle {
                 MonsterAttack(player,monster);
             }
             else if(isPlayerDodging){
+                System.out.println(ColorText.colorText("You dodged an attack",ColorText.YELLOW));
                 leftDodgeRound--;
                 if(leftDodgeRound <= 0){
                     isPlayerDodging = false;
@@ -383,8 +407,8 @@ public class RoundBasedBattle {
                 defendStatus(player,monster);
             }
             if(player.getHealthPoints() <= 0){
-                System.out.println("You DIED and GAME OVER");
-                System.out.println("Press Any Button to Quit.");
+                System.out.println(ColorText.colorText("You DIED and GAME OVER",ColorText.RED));
+                System.out.println(ColorText.colorText("Press Any Button to Quit.",ColorText.RED));
                 BasicFunctions.continueGame();
                 System.exit(0);
             }
@@ -419,14 +443,14 @@ public class RoundBasedBattle {
         System.out.println(player.getName());
         System.out.print("-->" + "HP: [");
 
-        int HPratio = (int) Math.ceil((player.getShowHP() / 30) * (player.getHealthPoints() / player.getShowHP()));
+        int HPratio = (int)(Math.ceil(player.getHealthPoints())/30);
         for (int i = 0; i < (int) Math.floor(player.getShowHP() / 30); i++) {
             System.out.print((i <= HPratio ? ":" : " "));
         }
         System.out.print("] " + "( " + player.getHealthPoints() + " / " + player.getShowHP() + " )\n");
 
         System.out.print("-->" + "MP: [");
-        int MPratio = (int) Math.ceil((player.getShowMP() / 10) * (player.getManaPoints() / player.getShowMP()));
+        int MPratio = (int)(Math.ceil(player.getManaPoints())/10);
         if (player.getManaPoints() != 0) {
             for (int i = 0; i < (int) Math.floor(player.getShowMP() / 10); i++) {
                 System.out.print((i <= MPratio ? "/" : " "));
@@ -444,7 +468,7 @@ public class RoundBasedBattle {
         System.out.println(monster.getName());
         System.out.print("-->" + "HP: [");
 
-        int HPratio = (int) Math.ceil((monster.getShowHP() / 30) * (monster.getHealthPoints() / monster.getShowHP()));
+        int HPratio = (int)(Math.ceil(monster.getHealthPoints())/30);;
         for (int i = 0; i <(int)Math.floor(monster.getShowHP() / 30);i++){
             System.out.print((i <= HPratio ? ":" : " "));
         }
@@ -452,7 +476,7 @@ public class RoundBasedBattle {
 
         System.out.print("-->" + "MP: [");
         if(monster.getManaPoints() != 0){
-            int MPratio = (int) Math.ceil((monster.getShowMP() / 10) * (monster.getManaPoints() / monster.getShowMP()));
+            int MPratio = (int)(Math.ceil(monster.getManaPoints())/10);;
             for (int i = 0; i <(int)Math.floor(monster.getShowMP() / 10);i++){
                 System.out.print((i <= MPratio ? "/" : " "));
             }

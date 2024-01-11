@@ -12,6 +12,7 @@ public class Archetypes {
     protected int physicalAttack;
     protected int magicalAttack;
     protected int level;
+    protected int lvMonsterLvUp;
     protected int xp;
 
     public Archetypes(String name,String playerName,int healthPoints, int manaPoints, int physicalDefense, int magicalDefense, int physicalAttack, int magicalAttack) {
@@ -26,44 +27,49 @@ public class Archetypes {
         this.physicalAttack = physicalAttack;
         this.magicalAttack = magicalAttack;
         this.level = 1;
+        this.lvMonsterLvUp = 1;
         this.xp = 0;
     }
     public Archetypes(){
         this.showMP = manaPoints;
         this.showHP = healthPoints;
         this.level = 1;
+        this.lvMonsterLvUp = 1;
         this.xp = 0;
     }
     public void expCheck(){
-        if(this.level <= 10){
-            if(this.xp >= 10){
-                this.xp -= 10;
-                levelUp();
+        while(this.xp > 10) {
+            if (this.level <= 10) {
+                if (this.xp >= 10) {
+                    this.xp -= 10;
+                    levelUp();
+                    this.lvMonsterLvUp++;
+                }
             }
-        }
-        else if(this.level > 10 && this.level<35){
-            this.xp -= 30;
-            levelUp();
+            else if (this.level > 10 && this.level < 35 && this.xp >= 20) {
+                this.xp -= 20;
+                levelUp();
+                this.lvMonsterLvUp++;
+            }
         }
     }
 
-    public void levelUp() {
-        healthPoints += 15;
-        showHP += 15;
-        manaPoints += 30;
-        showMP += 30;
-        physicalDefense += 10;
-        magicalDefense += 10;
-        physicalAttack += 10;
-        magicalAttack += 10;
-        level++;
 
+    public void levelUp() {
+        this.healthPoints += 15;
+        this.showHP += 15;
+        this.manaPoints += 5;
+        this.showMP += 5;
+        this.physicalDefense += 10;
+        this.magicalDefense += 10;
+        this.physicalAttack += 10;
+        this.magicalAttack += 10;
+        this.level++;
     }
     @Override
     public String toString(){
         return  ColorText.colorText("Character Name: " + name + "\n",ColorText.YELLOW) +
                 "Player Name: " + playerName + "\n" +
-                "XP: " + xp + "\n" +
                 "Lv: " + level + "\n" +
                 "HP: " + healthPoints + "\n" +
                 "Magical Defense: " + magicalDefense + "\n" +
@@ -74,7 +80,6 @@ public class Archetypes {
     }
 
     public String getName() {
-
         return name;
     }
 
@@ -170,4 +175,15 @@ public class Archetypes {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+
+    public int getLvMonsterLvUp() {
+        return lvMonsterLvUp;
+    }
+
+    public void setLvMonsterLvUp(int lvMonsterLvUp) {
+        this.lvMonsterLvUp = lvMonsterLvUp;
+    }
+
 }
+
+

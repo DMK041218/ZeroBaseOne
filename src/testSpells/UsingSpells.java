@@ -13,7 +13,7 @@ public class UsingSpells {
         if(abilityStatus){
             System.out.print(ability.getSpellsName());
             System.out.print("\t");
-            System.out.print("< -" + ability.getRequiredSkill_MP() + " MP"  + spsv.isAbility(ability) + ability.getDamage_HP() + " HP, " + ability.getSpellsDescription() + " >");
+            System.out.print("< -" + ability.getRequiredSkill_MP() + "MP, " + ability.getDamage_HP() + "HP, " + ability.getSpellsDescription() + " >");
             System.out.print("\n");
         }
     }
@@ -21,6 +21,8 @@ public class UsingSpells {
     public boolean usingAtkSpells(Ability ability,Archetypes player,Monster monster) {
         SpellsService spsv = new SpellsService();
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
+        int CalledCnt = ability.getisCalledCnt() + 1;
+        ability.setIsCalledCnt(CalledCnt);
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {
             //This Spell Has Already Unlocked
             //And Ended Its Cool Down
@@ -36,10 +38,11 @@ public class UsingSpells {
         }
         return false;
     }
-    public boolean canUseDodgingSPells(Archetypes player){
+    public boolean canUseDodgingSPells(Archetypes player,Ability ability){
         SpellsService spsv = new SpellsService();
-        Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[1]);
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
+        int CalledCnt = ability.getisCalledCnt() + 1;
+        ability.setIsCalledCnt(CalledCnt);
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {
             //This Spell Has Already Unlocked
             //And Ended Its Cooldown
@@ -56,6 +59,8 @@ public class UsingSpells {
         //for paladin spell Holy Smite
         SpellsService spsv = new SpellsService();
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[9]);
+        int CalledCnt = ability.getisCalledCnt() + 1;
+        ability.setIsCalledCnt(CalledCnt);
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
         int curHp = player.getHealthPoints();
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {

@@ -92,7 +92,6 @@ public class Game {
             }
 
             //Set Name
-
             while (!nameSet){
                 BasicFunctions.printHeading("Tell me your name: ");
                 playerSetName = scanner.next();
@@ -106,8 +105,6 @@ public class Game {
                 }
             }
             BasicFunctions.continueGame();
-
-
             //game starts
             MapDesign map = new MapDesign();
             while(player.getLevel() < 35){

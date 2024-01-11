@@ -18,18 +18,18 @@ public class SpellsService {
         //The fifth call (available) coolDown= 4, totalCount = 5 totalCount%(coolDown+1) = 0
         //Sixth call (cooling) coolDown= 4, totalCount = 6 totalCount%(coolDown+1) = 1
         //.......
-        if(ability.isLevelLocked())
+        if(ability.isLevelLocked() && ability.getisCalledCnt() == 1)
             ability.setTotalCount(++totalCount);
         if (totalCount <= coolDown) {
-            System.out.println(", " + totalCount + "/" + coolDown + " CD");
+            System.out.println(ColorText.colorText(totalCount + "/" + coolDown + " CD",ColorText.BLUE));
             return false;
         }
         int count = totalCount % (coolDown + 1);
         if (count != 0) {
-            System.out.println(", " + count + "/" + coolDown + " CD");
+            System.out.println(ColorText.colorText(count + "/" + coolDown + " CD",ColorText.BLUE));
             return false;
         } else {
-            System.out.println(", " + coolDown + "/" + coolDown + " CD");
+            System.out.println(ColorText.colorText(coolDown + "/" + coolDown + " CD",ColorText.BLUE));
             return true;
         }
     }
@@ -55,6 +55,7 @@ public class SpellsService {
             return false;
 
     }
+
 
 
 
