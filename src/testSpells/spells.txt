@@ -5,7 +5,7 @@ Warrior:
 		"unlockSpellsLevel": "10",
 		"coolDown": "4",
 		"requiredSkill_MP": "10",
-		"damage_HP": "25",
+		"damage_HP": "45",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Unleashes a powerful attack, dealing heavy damage to the target"
 	},
@@ -22,7 +22,7 @@ Warrior:
         "spellsName": "Berserker Fury",
 		"unlockSpellsLevel": "33",
 		"coolDown": "8",
-		"requiredSkill_MP": "30",
+		"requiredSkill_MP": "70",
 		"damage_HP": "40",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Warriors enter berserk mode and unleash frenzied attacks on enemies"
@@ -35,7 +35,7 @@ Mage:
 		"unlockSpellsLevel": "10",
 		"coolDown": "2",
 		"requiredSkill_MP": "10",
-		"damage_HP": "20",
+		"damage_HP": "45",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Hurls a fiery projectile at the target, dealing moderate fire damage"
 	},
@@ -53,7 +53,7 @@ Mage:
 		"unlockSpellsLevel": "33",
 		"coolDown": "9",
 		"requiredSkill_MP": "30",
-		"damage_HP": "45",
+		"damage_HP": "70",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Launches a glacial storm at the target, dealing heavy damage to the target"
     }
@@ -65,7 +65,7 @@ Rogue:
 		"unlockSpellsLevel": "10",
 		"coolDown": "3",
 		"requiredSkill_MP": "10",
-		"damage_HP": "15",
+		"damage_HP": "45",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "The Rogue sneaks behind the target, delivering a devastating backstab, causing extra damage and stunning the enemy for 1 round"
 	},
@@ -83,7 +83,7 @@ Rogue:
 		"unlockSpellsLevel": "33",
 		"coolDown": "10",
 		"requiredSkill_MP": "30",
-		"damage_HP": "50",
+		"damage_HP": "70",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Unleash lightning strikes at enemies, dealing damage to them"
     }
@@ -95,7 +95,7 @@ Paladin:
 		"unlockSpellsLevel": "10",
 		"coolDown": "3",
 		"requiredSkill_MP": "10",
-		"damage_HP": "15",
+		"damage_HP": "45",
 		"spellsHealthPoints": "30",
 		"spellsDescription": " Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt"
 	},
@@ -113,7 +113,7 @@ Paladin:
 		"unlockSpellsLevel": "30",
 		"coolDown": "8",
 		"requiredSkill_MP": "30",
-		"damage_HP": "40",
+		"damage_HP": "70",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Use the Dragon Slash to slash enemies and deal heavy damage to them"
     }
@@ -125,7 +125,7 @@ Archer:
 		"unlockSpellsLevel": "10",
 		"coolDown": "2",
 		"requiredSkill_MP": "10",
-		"damage_HP": "10",
+		"damage_HP": "45",
 		"spellsHealthPoints": "0",
 		"spellsDescription": " Fires a flurry of arrows at the target, dealing moderate damage"
 	},
@@ -134,7 +134,7 @@ Archer:
 		"unlockSpellsLevel": "30",
 		"coolDown": "6",
 		"requiredSkill_MP": "20",
-		"damage_HP": "30",
+		"damage_HP": "55",
 		"spellsHealthPoints": "0",
 		"spellsDescription": " Executes a precise shot that can pierce the enemies, causing heavy damage to the enemy"
 	},
@@ -143,7 +143,7 @@ Archer:
 		"unlockSpellsLevel": "33",
 		"coolDown": "9",
 		"requiredSkill_MP": "30",
-		"damage_HP": "40",
+		"damage_HP": "70",
 		"spellsHealthPoints": "0",
 		"spellsDescription": "Unleash a storm of blades on your enemies, dealing heavy damage to them"
     }
