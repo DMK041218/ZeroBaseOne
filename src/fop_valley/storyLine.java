@@ -12,7 +12,6 @@ public class storyLine {
 
     public static void PrintChap2(){
         //print Chapter2 when player reaches Lv.15
-        BasicFunctions.clearScreen();
         BasicFunctions.printHeading("Chapter 2");
         System.out.println("You've come a long way so far.");
         System.out.println("In the process, your combat skills and abilities have been greatly improved,");
