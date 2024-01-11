@@ -18,11 +18,10 @@ public class UsingSpells {
         }
     }
 
-    public boolean usingAtkSpells(Ability ability,Archetypes player,Monster monster) {
+    public boolean usingAtkSpells(Ability ability,Archetypes player,Monster monster,int roundCnt) {
         SpellsService spsv = new SpellsService();
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
-        int CalledCnt = ability.getisCalledCnt() + 1;
-        ability.setIsCalledCnt(CalledCnt);
+        ability.setTotalCount(roundCnt);
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {
             //This Spell Has Already Unlocked
             //And Ended Its Cool Down
@@ -38,11 +37,10 @@ public class UsingSpells {
         }
         return false;
     }
-    public boolean canUseDodgingSPells(Archetypes player,Ability ability){
+    public boolean canUseDodgingSPells(Archetypes player,Ability ability,int roundCnt){
         SpellsService spsv = new SpellsService();
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
-        int CalledCnt = ability.getisCalledCnt() + 1;
-        ability.setIsCalledCnt(CalledCnt);
+        ability.setTotalCount(roundCnt);
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {
             //This Spell Has Already Unlocked
             //And Ended Its Cooldown
@@ -55,12 +53,11 @@ public class UsingSpells {
             return false;
         }
     }
-    public boolean usingHealingSpells(Paladin player){
+    public boolean usingHealingSpells(Paladin player,int roundCnt){
         //for paladin spell Holy Smite
         SpellsService spsv = new SpellsService();
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[9]);
-        int CalledCnt = ability.getisCalledCnt() + 1;
-        ability.setIsCalledCnt(CalledCnt);
+        ability.setTotalCount(roundCnt);
         boolean abilityStatus = spsv.unlockSpellsLevel(ability, player.getLevel());
         int curHp = player.getHealthPoints();
         if (spsv.isAbility(ability) && abilityStatus && spsv.isMpEnough(ability, player.getManaPoints())) {
@@ -100,92 +97,92 @@ public class UsingSpells {
         showSpells(a3,player,"[A3]");
         System.out.print('\n');
     }
-    public boolean WarriorS1(Warrior player,Monster monster){
+    public boolean WarriorS1(Warrior player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[0]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean WarriorS3 (Warrior player,Monster monster){
+    public boolean WarriorS3 (Warrior player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[2]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
 
-    public boolean MageS1(Mage player,Monster monster){
+    public boolean MageS1(Mage player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[3]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean MageS3(Mage player,Monster monster){
+    public boolean MageS3(Mage player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[5]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
 
-    public boolean RogueS1(Rogue player,Monster monster){
+    public boolean RogueS1(Rogue player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[6]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean RogueS3(Rogue player,Monster monster){
+    public boolean RogueS3(Rogue player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[8]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
 
-    public boolean PaladinS1(Paladin player,Monster monster){
+    public boolean PaladinS1(Paladin player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[9]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean PaladinS3(Paladin player,Monster monster){
+    public boolean PaladinS3(Paladin player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[11]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean ArcherS1(Archer player,Monster monster){
+    public boolean ArcherS1(Archer player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[12]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean ArcherS2(Archer player,Monster monster){
+    public boolean ArcherS2(Archer player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[13]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else
             return false;
     }
-    public boolean ArcherS3(Archer player,Monster monster){
+    public boolean ArcherS3(Archer player,Monster monster,int roundCnt){
         Ability ability = ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), spellsName[14]);
-        if(usingAtkSpells(ability,player,monster)){
+        if(usingAtkSpells(ability,player,monster,roundCnt)){
             return true;
         }
         else

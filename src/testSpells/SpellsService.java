@@ -18,8 +18,6 @@ public class SpellsService {
         //The fifth call (available) coolDown= 4, totalCount = 5 totalCount%(coolDown+1) = 0
         //Sixth call (cooling) coolDown= 4, totalCount = 6 totalCount%(coolDown+1) = 1
         //.......
-        if(ability.isLevelLocked() && ability.getisCalledCnt() == 1)
-            ability.setTotalCount(++totalCount);
         if (totalCount <= coolDown) {
             System.out.println(ColorText.colorText(totalCount + "/" + coolDown + " CD",ColorText.BLUE));
             return false;

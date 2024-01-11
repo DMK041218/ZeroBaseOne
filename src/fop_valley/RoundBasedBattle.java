@@ -8,12 +8,7 @@ import util.ReadSpellsUtil;
 import java.util.List;
 
 public class RoundBasedBattle {
-    public void resetAbilityCalledCnt(Archetypes player){
-        for(int i = 0; i < 3;i++){
-            List<Ability> abilities = ReadSpellsUtil.getAbilitysByArchetypesName(player.getName());
-            abilities.get(i).setIsCalledCnt(0);
-        }
-    }
+
     public String readBattleChoice(){
         String[] battleChoice = {"S1","S2","S3","A1","A2","A3"};
         String choice = BasicFunctions.readChoice("-->",battleChoice);
@@ -72,12 +67,14 @@ public class RoundBasedBattle {
         }
     }
     public void battle(Warrior player,Monster monster){
+        int roundCnt = 0;
         player.expCheck();
         int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
         player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
+            roundCnt++;
             //player's turn
             showPlayerStatus(player);
             battleMenu();
@@ -94,10 +91,10 @@ public class RoundBasedBattle {
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
-                            isPlayerTurnEnd = usp.WarriorS1(player, monster);
+                            isPlayerTurnEnd = usp.WarriorS1(player, monster,roundCnt);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[1]))){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[1]),roundCnt)){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 3;
                                 isPlayerTurnEnd = true;
@@ -106,13 +103,12 @@ public class RoundBasedBattle {
                             else
                                 break;
                         case "A3":
-                            isPlayerTurnEnd = usp.WarriorS3(player,monster);
+                            isPlayerTurnEnd = usp.WarriorS3(player,monster,roundCnt);
                             break;
 
                     }
                 }
             }while(!isPlayerTurnEnd);
-            resetAbilityCalledCnt(player);
 
             if(monster.getHealthPoints() <= 0){
                 System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
@@ -145,10 +141,12 @@ public class RoundBasedBattle {
     }
 
     public void battle(Archer player,Monster monster){
+        int roundCnt = 0;
         player.expCheck();
         int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
         player.setLvMonsterLvUp(restLv);
         do {
+            roundCnt++;
             //player's turn
             showPlayerStatus(player);
             battleMenu();
@@ -164,20 +162,19 @@ public class RoundBasedBattle {
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
-                            isPlayerTurnEnd = usp.ArcherS1(player, monster);
+                            isPlayerTurnEnd = usp.ArcherS1(player, monster,roundCnt);
                             break;
                         case "A2":
-                            isPlayerTurnEnd = usp.ArcherS2(player, monster);
+                            isPlayerTurnEnd = usp.ArcherS2(player, monster,roundCnt);
                             break;
                         case "A3":
-                            isPlayerTurnEnd = usp.ArcherS3(player,monster);
+                            isPlayerTurnEnd = usp.ArcherS3(player,monster,roundCnt);
                             break;
                         default:
                             isPlayerTurnEnd = false;
                     }
                 }
             }while(!isPlayerTurnEnd);
-            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
                 System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
@@ -200,12 +197,14 @@ public class RoundBasedBattle {
         } while (player.getHealthPoints() > 0 && monster.getHealthPoints() > 0);
     }
     public void battle(Mage player,Monster monster){
+        int roundCnt = 0;
         player.expCheck();
         int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
         player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
+            roundCnt++;
             //player's turn
             showPlayerStatus(player);
             battleMenu();
@@ -221,10 +220,10 @@ public class RoundBasedBattle {
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
-                            isPlayerTurnEnd = usp.MageS1(player, monster);
+                            isPlayerTurnEnd = usp.MageS1(player, monster,roundCnt);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[4]))){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[4]),roundCnt)){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 2;
                                 isPlayerTurnEnd = true;
@@ -233,14 +232,13 @@ public class RoundBasedBattle {
                             else
                                 break;
                         case "A3":
-                            isPlayerTurnEnd = usp.MageS3(player,monster);
+                            isPlayerTurnEnd = usp.MageS3(player,monster,roundCnt);
                             break;
                         default:
                             isPlayerTurnEnd = false;
                     }
                 }
             }while(!isPlayerTurnEnd);
-            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
                 System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();
@@ -271,12 +269,14 @@ public class RoundBasedBattle {
         } while (player.getHealthPoints() > 0 && monster.getHealthPoints() > 0);
     }
     public void battle(Paladin player,Monster monster){
+        int roundCnt = 0;
         player.expCheck();
         int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
         player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
+            roundCnt++;
             //player's turn
             showPlayerStatus(player);
             battleMenu();
@@ -292,11 +292,11 @@ public class RoundBasedBattle {
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
-                            isPlayerTurnEnd = usp.PaladinS1(player, monster);
-                            usp.usingHealingSpells(player);
+                            isPlayerTurnEnd = usp.PaladinS1(player, monster,roundCnt);
+                            usp.usingHealingSpells(player,roundCnt);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[10]))){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[10]),roundCnt)){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 2;
                                 isPlayerTurnEnd = true;
@@ -305,14 +305,13 @@ public class RoundBasedBattle {
                             else
                                 break;
                         case "A3":
-                            isPlayerTurnEnd = usp.PaladinS3(player,monster);
+                            isPlayerTurnEnd = usp.PaladinS3(player,monster,roundCnt);
                             break;
                         default:
                             isPlayerTurnEnd = false;
                     }
                 }
             }while(!isPlayerTurnEnd);
-            resetAbilityCalledCnt(player);
 
             if(monster.getHealthPoints() <= 0){
                 System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
@@ -344,12 +343,14 @@ public class RoundBasedBattle {
         } while (player.getHealthPoints() > 0 && monster.getHealthPoints() > 0);
     }
     public void battle(Rogue player,Monster monster){
+        int roundCnt = 0;
         player.expCheck();
         int restLv = monster.MonsterLvUp(player.getLvMonsterLvUp());
         player.setLvMonsterLvUp(restLv);
         boolean isPlayerDodging = false;
         int leftDodgeRound = 0;
         do {
+            roundCnt++;
             //player's turn
             showPlayerStatus(player);
             battleMenu();
@@ -365,10 +366,10 @@ public class RoundBasedBattle {
                 if (!isPlayerTurnEnd) {
                     switch (choice) {
                         case "A1":
-                            isPlayerTurnEnd = usp.RogueS1(player, monster);
+                            isPlayerTurnEnd = usp.RogueS1(player, monster,roundCnt);
                             break;
                         case "A2":
-                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[7]))){
+                            if(usp.canUseDodgingSPells(player, ReadSpellsUtil.getAbilitysBySpellsName(player.getName(), UsingSpells.spellsName[7]),roundCnt)){
                                 isPlayerDodging = true;
                                 leftDodgeRound = 1;
                                 isPlayerTurnEnd = true;
@@ -377,14 +378,13 @@ public class RoundBasedBattle {
                             else
                                 break;
                         case "A3":
-                            isPlayerTurnEnd = usp.RogueS3(player,monster);
+                            isPlayerTurnEnd = usp.RogueS3(player,monster,roundCnt);
                             break;
                         default:
                             isPlayerTurnEnd = false;
                     }
                 }
             }while(!isPlayerTurnEnd);
-            resetAbilityCalledCnt(player);
             if(monster.getHealthPoints() <= 0){
                 System.out.println(ColorText.colorText("\nYou Defeated the " + monster.getName() + " ,Congratulations.",ColorText.CYAN));
                 int curXP = player.getXp();

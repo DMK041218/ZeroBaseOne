@@ -16,9 +16,6 @@ public class Ability {
     private boolean levelLocked;
     private String spellsDescription;
 
-    private int isCalledCnt;
-
-    public int getisCalledCnt(){ return  isCalledCnt;}
 
     public int getTotalCount() {
         return totalCount;
@@ -70,9 +67,6 @@ public class Ability {
         return spellsDescription;
     }
 
-    public void setIsCalledCnt(int calledCnt) {
-        isCalledCnt = calledCnt;
-    }
 
     public void setSpellsName(String spellsName) {
         this.spellsName = spellsName;
