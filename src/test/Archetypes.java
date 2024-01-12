@@ -30,6 +30,20 @@ public class Archetypes {
         this.lvMonsterLvUp = 1;
         this.xp = 0;
     }
+    public Archetypes(String name,String playerName,int healthPoints,int manaPoints,int level,int xp,int magicalAttack,int physicalAttack,int magicalDefense,int physicalDefense){
+        this.name = name;
+        this.playerName = playerName;
+        this.healthPoints = healthPoints;
+        this.showHP = healthPoints;
+        this.manaPoints = manaPoints;
+        this.showMP = manaPoints;
+        this.physicalDefense = physicalDefense;
+        this.magicalDefense = magicalDefense;
+        this.physicalAttack = physicalAttack;
+        this.magicalAttack = magicalAttack;
+        this.level = level;;
+        this.xp = xp;     
+    }
     public Archetypes(){
         this.showMP = manaPoints;
         this.showHP = healthPoints;

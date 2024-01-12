@@ -70,7 +70,7 @@ public class BasicFunctions {
         lineSeperator();
     }
     //Game Content Functions
-    public GameState printBeginningMenu(){
+    public Archetypes printBeginningMenu(){
         printHeading("MENU");
         System.out.println("[1]Start a new Journey");
         System.out.println("[2]Load Game");
@@ -80,10 +80,11 @@ public class BasicFunctions {
                 Game game = new Game();
                 game.startGame();
                 return null;
-            case 2 :
-                GameState gamestate = new GameState();
-                gamestate.loadGame(gamestate);
-                return gamestate;
+                case 2 :
+                GameState gameState = new GameState();
+                return gameState.loadGame();
+
+            
             case 3 :
                 System.exit(0);
             default:
@@ -106,8 +107,7 @@ public class BasicFunctions {
                 return;
            case 3:
                 GameState saveGameState = new GameState();
-                saveGameState.saveData(player);
-                saveGameState.saveGame(saveGameState);
+                saveGameState.saveGame(player);
                 System.exit(0);
         }
 
