@@ -51,13 +51,15 @@ public class RoundBasedBattle {
     }
     public void battle(Archetypes player,Monster monster){
         if(player instanceof Warrior){
-            battle((Warrior) player,monster);
+            Warrior warrior = (Warrior)player;
+            battle(warrior,monster);
         }
         else if(player instanceof Archer){
             battle((Archer) player,monster);
         }
         else if(player instanceof Mage){
-            battle((Mage) player,monster);
+            Mage mage = (Mage)player;
+            battle(mage,monster);
         }
         else if(player instanceof Paladin){
             battle((Paladin) player,monster);
